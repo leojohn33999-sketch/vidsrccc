@@ -80,17 +80,18 @@ app.get("/extract", async (req, res) => {
   if (!tmdb_id) return res.status(400).json({ error: "tmdb_id required" });
 
   [span_6](start_span)// 1. Launch a FRESH browser just for this request to avoid memory leaks[span_6](end_span)
-  const browser = await chromium.launch({
+    const browser = await chromium.launch({
     headless: true,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--disable-dev-shm-usage',
       '--disable-gpu',
-      [span_7](start_span)'--single-process', // Combine processes to save RAM[span_7](end_span)
+      '--single-process', 
       '--no-zygote'
     ]
   });
+
 
   try {
     const results = {};
